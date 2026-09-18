@@ -1,16 +1,37 @@
 # OG Green
 
-**Data scientist and builder working on public-data fraud analytics, program-integrity tools, and AI-assisted developer workflows.**
+**Senior Principal Data Scientist / AI Engineering Leader**
 
-I build applied ML/data systems and small developer-focused products — especially tools that turn messy real-world data or repetitive engineering workflows into something clearer, faster, and easier to act on.
+I build high-stakes applied-ML and AI systems that are measurable, auditable and production-ready — from fraud
+and graph analytics to LLM evaluation and developer-reliability tooling. The common thread across everything
+below: the evaluation is itself an engineering artifact. Baselines, negative results, uncertainty, cost, leakage
+and failure modes are reported, not hidden.
 
-My public work is split across a few areas:
+<!-- TODO(owgreen): add links — [LinkedIn](…) · [Résumé](…) · [Email](…) -->
 
-- Fraud / program-integrity analytics
-- Public-data investigation tooling
-- LLM-assisted workflows
-- Developer utilities and API tooling
-- Lightweight SaaS/product experiments
+## Start here
+
+| Project | What I owned | Evidence |
+|---|---|---|
+| [ellip2](https://github.com/owgreen-dev/ellip2) | AML graph-ML research + discovery architecture | 0.911 ± 0.009 PR-AUC over 121,810 labeled subgraphs; discovery over a 49.3M-cluster background; failed model families and leakage/shift analysis documented; reproducible GPU pipeline |
+| [relief-probe](https://github.com/owgreen-dev/relief-probe) | Public-data fraud analytics, end to end | 11.4M PPP loans; out-of-time validation against DOJ/SBA-OIG enforcement; 23.8× lift @500 with a bootstrap interval; honest that a simple baseline captures much of the signal |
+| [Shipi18n](https://github.com/Shipi18n/shipi18n) | OSS QA architecture + evaluation + upstream validation | 64 repos scanned, 21 shipping a verified broken string, 119 defects verified by hand, 3 fixed upstream in the first week — [live tally](https://shipi18n.com/oss) |
+| [tsfix](https://github.com/Shipispec/tsfix) | AI code-repair architecture | deterministic + LLM repair layers; real-world benchmark split by workload; < $0.005 per fix |
+
+Role on all four: architect and sole author — problem framing, data and evaluation design, system architecture,
+implementation, reproducibility, deployment surfaces and documentation.
+
+## Selected external impact
+
+Findings from my tooling that other projects acted on:
+
+- **Solidus** — 13 dropped `%{…}` interpolations restored in pt-BR; [PR merged the same day](https://github.com/solidusio/solidus/pull/6626) with three core-team approvals.
+- **Plane** — Czech template toasts lost their variables; [PR merged in three hours](https://github.com/makeplane/plane/pull/9848) by a co-founder.
+- **nocodb** — [my issue](https://github.com/nocodb/nocodb/issues/14573) on translated/dropped vue-i18n variables led to a [maintainer PR that swept all 39 locales](https://github.com/nocodb/nocodb/pull/14581).
+- **Excalidraw** — [my issue](https://github.com/excalidraw/excalidraw/issues/12097) on a `{{max}}`→`{{mix}}` typo led a contributor to [fix it and add a placeholder-parity test suite](https://github.com/excalidraw/excalidraw/pull/12109) to a 130k-star repo.
+
+<!-- TODO(owgreen): one accurate paragraph on professional leadership scope (team/portfolio, technical direction,
+     model review, mentoring) — generic enough for NDA, specific enough for level. Do not invent numbers. -->
 
 ## Featured project
 
@@ -38,32 +59,19 @@ This project focuses on turning public records into transparent, defensible inve
 I use GitHub organizations to separate different kinds of work instead of mixing every project into one personal account.
 
 ### [Shipi18n](https://github.com/Shipi18n)
+Open-source QA for i18n locale files — a deterministic linter (missing keys, dropped placeholders, invalid
+ICU, collapsed plurals across JSON/YAML/ARB/PO/XLIFF/Android/Apple) with an optional, separately benchmarked
+LLM semantic pass. CLI, core library, MCP server, GitHub Action, Docker, pre-commit.
 
-Developer tooling for app localization and translation workflows.
-
-Shipi18n is focused on making internationalization easier for developers: translating locale files, preserving placeholders, supporting JSON/i18n workflows, and integrating translation into existing build or automation pipelines.
-
-Examples of work in this area:
-
-- Translation APIs for developers
-- CLI tooling for locale-file translation
-- Vite/plugin-style integrations
-- Demo repos and framework examples
-- Automation around i18n files, placeholders, and translation memory
+What makes it more than a linter: I run it on real open-source repositories, verify every finding by hand
+against the source language, and send the fix upstream — then turn every false positive the scan exposes into a
+regression fixture. Running tally with links: **[shipi18n.com/oss](https://shipi18n.com/oss)**.
 
 ### [Shipispec](https://github.com/Shipispec)
-
-Developer tooling around API specs, structured outputs, and engineering workflow automation.
-
-This workstream is for tools that help developers move faster around specs, schemas, generated code, API documentation, or related automation.
-
-Examples of work in this area:
-
-- API/spec utilities
-- Schema and contract tooling
-- Developer workflow automation
-- Lightweight AI-assisted coding tools
-- Experiments around turning specs into usable project assets
+Reliability tooling for AI-assisted software engineering. Flagship: **[tsfix](https://github.com/Shipispec/tsfix)** —
+library-aware TypeScript error recovery for LLM-generated code, deterministic quick-fixes first, an opt-in LLM
+repair layer second, measured on a real-world failure benchmark (98.6% single-file, 40.0% multi-file, 81.4%
+aggregate, under $0.005 per fix) with the weak cases reported alongside the headline.
 
 ## Current focus
 
