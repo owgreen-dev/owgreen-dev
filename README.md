@@ -15,7 +15,7 @@ and failure modes are reported, not hidden.
 |---|---|---|
 | [ellip2](https://github.com/owgreen-dev/ellip2) | AML graph-ML research + discovery architecture | 0.911 ± 0.009 PR-AUC over 121,810 labeled subgraphs; discovery over a 49.3M-cluster background; failed model families and leakage/shift analysis documented; reproducible GPU pipeline |
 | [relief-probe](https://github.com/owgreen-dev/relief-probe) | Public-data fraud analytics, end to end | 11.4M PPP loans; out-of-time validation against DOJ/SBA-OIG enforcement; 23.8× lift @500 with a bootstrap interval; honest that a simple baseline captures much of the signal |
-| [Shipi18n](https://github.com/Shipi18n/shipi18n) | OSS QA architecture + evaluation + upstream validation | 64 repos scanned, 21 shipping a verified broken string, 119 defects verified by hand, 3 fixed upstream in the first week — [live tally](https://shipi18n.com/oss) |
+| [Shipi18n](https://github.com/Shipi18n/shipi18n) | OSS QA architecture + evaluation + upstream validation | 95 repos scanned, 402 broken strings verified by hand, 14 merged fix PRs across 11 repos, 3 projects added their own placeholder check — [live tally](https://shipi18n.com/oss) |
 | [tsfix](https://github.com/Shipispec/tsfix) | AI code-repair architecture | deterministic + LLM repair layers; real-world benchmark split by workload; < $0.005 per fix |
 
 Role on all four: architect and sole author — problem framing, data and evaluation design, system architecture,
@@ -25,9 +25,11 @@ implementation, reproducibility, deployment surfaces and documentation.
 
 Findings from my tooling that other projects acted on:
 
-- **Solidus** — 13 dropped `%{…}` interpolations restored in pt-BR; [PR merged the same day](https://github.com/solidusio/solidus/pull/6626) with three core-team approvals.
+- **Solidus** — 13 dropped `%{…}` interpolations restored in pt-BR; [PR merged the same day](https://github.com/solidusio/solidus/pull/6626) with three core-team approvals. Later, [`solidus_i18n` added an interpolation check to its own spec](https://github.com/solidusio/solidus/pull/6655), so their own test suite now catches this class of bug.
 - **Plane** — Czech template toasts lost their variables; [PR merged in three hours](https://github.com/makeplane/plane/pull/9848) by a co-founder.
-- **nocodb** — [my issue](https://github.com/nocodb/nocodb/issues/14573) on translated/dropped vue-i18n variables led to a [maintainer PR that swept all 39 locales](https://github.com/nocodb/nocodb/pull/14581).
+- **nocodb** (65k stars) — [my issue](https://github.com/nocodb/nocodb/issues/14573) on translated/dropped vue-i18n variables led to a [maintainer PR that swept all 39 locales](https://github.com/nocodb/nocodb/pull/14581); a [second issue](https://github.com/nocodb/nocodb/issues/14717) (182 plurals whose `|` separator machine translation had mangled) was confirmed in 3 minutes and [fixed by the team](https://github.com/nocodb/nocodb/pull/14718) 89 minutes after filing.
+- **good_job** — Russian/Ukrainian plural forms that displayed the wrong count (e.g. "1" for 21 minutes); [two](https://github.com/bensheldon/good_job/pull/1842) [PRs](https://github.com/bensheldon/good_job/pull/1848) merged by the maintainer.
+- **npmx** — 20 strings whose placeholder names had been changed in translation, so the values rendered blank; [PR merged](https://github.com/npmx-dev/npmx.dev/pull/3311) after maintainer review.
 - **Excalidraw** — [my issue](https://github.com/excalidraw/excalidraw/issues/12097) on a `{{max}}`→`{{mix}}` typo led a contributor to [fix it and add a placeholder-parity test suite](https://github.com/excalidraw/excalidraw/pull/12109) to a 130k-star repo.
 
 <!-- TODO(owgreen): one accurate paragraph on professional leadership scope (team/portfolio, technical direction,
