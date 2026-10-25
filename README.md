@@ -7,7 +7,6 @@ and graph analytics to LLM evaluation and developer-reliability tooling. The com
 below: the evaluation is itself an engineering artifact. Baselines, negative results, uncertainty, cost, leakage
 and failure modes are reported, not hidden.
 
-<!-- TODO(owgreen): add links — [LinkedIn](…) · [Résumé](…) · [Email](…) -->
 
 ## Start here
 
